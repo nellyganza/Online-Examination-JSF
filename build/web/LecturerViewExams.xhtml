@@ -1,0 +1,125 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>View Exams List</title>
+    </h:head>
+    <h:body>
+        <ui:include src="components/DashBoardheader.xhtml" />
+        <div class="container">
+            <ui:include src="components/sidebar.xhtml" />
+            <div class="content">
+                
+                <h:form id="form">
+                    <div class="card crud-demo">
+                        <p:growl id="messages" showDetail="true"/>
+                        <p:dataTable id="dt-exams" widgetVar="dtExams" var="exam" value="#{crudView.exams}"
+                                     reflow="true" styleClass="exams-table"
+                                     selection="#{crudView.selectedExams}" rowKey="#{exam.examId}" paginator="true"
+                                     rows="10" rowSelectMode="add" paginatorPosition="bottom">
+                           
+                            <p:ajax event="rowSelect" />
+                            <p:ajax event="rowUnselect" />
+                            <p:ajax event="rowSelectCheckbox" />
+                            <p:ajax event="rowUnselectCheckbox" />
+                            <p:ajax event="toggleSelect" />
+
+                            <p:column selectionMode="multiple" exportable="false" width="10"></p:column>
+                            <p:column headerText="Name">
+                                <h:outputText value="#{exam.name}"/>
+                            </p:column>
+                            <p:column headerText="Category" >
+                                <h:outputText value="#{exam.category}"/>
+                            </p:column>
+                            <p:column headerText="Out of Marks" >
+                                <h:outputText value="#{exam.outofmarks}" />
+                            </p:column>
+                            <p:column headerText="No of Questions" >
+                                <h:outputText value="#{exam.numberofQuestion}"/>
+                            </p:column>
+                            <p:column headerText="Hours" >
+                                <h:outputText value="#{exam.hours}"/>
+                            </p:column>
+                            <p:column headerText="Date and Time" >
+                                <h:outputText value="#{exam.date}"/>
+                            </p:column>
+                            <p:column exportable="false">
+                                <p:commandButton icon="pi pi-pencil" update=":form:manage-exam-content"
+                                                 oncomplete="PF('manageExamDialog').show()"
+                                                 styleClass="edit-button rounded-button ui-button-success" process="@this">
+                                    <f:setPropertyActionListener value="#{exam}" target="#{crudView.selectedExam}"/>
+                                    <p:resetInput target=":form:manage-exam-content"/>
+                                </p:commandButton>
+                                <p:commandButton class="ui-button-warning rounded-button" icon="pi pi-trash" process="@this"
+                                                 oncomplete="PF('deleteExamDialog').show()">
+                                    <f:setPropertyActionListener value="#{exam}" target="#{crudView.selectedExam}"/>
+                                </p:commandButton>
+                            </p:column>
+
+                        </p:dataTable>
+
+                        <p:dialog header="Exam Details" showEffect="fade" modal="true"
+                                  widgetVar="manageExamDialog" responsive="true">
+                            <p:outputPanel id="manage-exam-content" class="ui-fluid">
+                                <p:outputPanel rendered="#{not empty crudView.selectedExam}">
+                                    <div class="p-field">
+                                        <p:outputLabel for="name">Name</p:outputLabel>
+                                        <p:inputText id="name" value="#{crudView.selectedExam.name}" required="true"/>
+                                    </div>
+                                    <div class="p-field">
+                                        <p:outputLabel for="category">Category</p:outputLabel>
+                                        <p:inputText id="category" value="#{crudView.selectedExam.category}"/>
+                                    </div>
+                                    <div class="p-field">
+                                        <p:outputLabel for="outofMarks">Out of Marks</p:outputLabel>
+                                        <p:inputNumber id="outofMarks" decimalPlaces="0" value="#{crudView.selectedExam.outofmarks}" />
+                                    </div>
+                                    <div class="p-field">
+                                        <p:outputLabel for="Hours">Hours</p:outputLabel>
+                                        <p:inputNumber id="Hours" decimalPlaces="0" value="#{crudView.selectedExam.hours}" />
+                                    </div>
+                                    <div class="p-field">
+                                        <p:outputLabel for="numberofquestion">No of Questions</p:outputLabel>
+                                        <p:inputNumber id="numberofquestion" decimalPlaces="0" value="#{crudView.selectedExam.numberofQuestion}" />
+                                    </div>
+                                    <div class="p-field">
+                                        <p:outputLabel value="Date and Time" for="datetime"/>
+                                        <p:datePicker id="datetime" value="#{crudView.selectedExam.date}"
+                                                      showTime="true" />
+                                    </div>
+                                </p:outputPanel>
+                            </p:outputPanel>
+
+                            <f:facet name="footer">
+                                <p:commandButton value="Save" icon="pi pi-check" actionListener="#{crudView.updateExam}"
+                                                 update="manage-exam-content" process="manage-exam-content @this"/>
+                                <p:commandButton value="Cancel" icon="pi pi-times" onclick="PF('manageExamDialog').hide()"
+                                                 class="ui-button-secondary"/>
+                            </f:facet>
+                        </p:dialog>
+
+                        <p:confirmDialog widgetVar="deleteExamDialog" showEffect="fade" width="300"
+                                         message="Delete the exam?" header="Confirm" severity="warn">
+                            <p:commandButton value="Yes" icon="pi pi-check" actionListener="#{crudView.deleteExam}"
+                                             process="@this" oncomplete="PF('deleteExamDialog').hide()"/>
+                            <p:commandButton value="No" type="button" styleClass="ui-button-secondary" icon="pi pi-times"
+                                             onclick="PF('deleteExamDialog').hide()"/>
+                        </p:confirmDialog>
+
+                        <p:confirmDialog global="true" showEffect="fade" width="300">
+                            <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check"/>
+                            <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no ui-button-secondary"
+                                             icon="pi pi-times"/>
+                        </p:confirmDialog>
+                    </div>
+                </h:form>
+            </div>
+        </div>
+    </h:body>
+    <ui:include src="/components/foot.xhtml" />
+</html>
+

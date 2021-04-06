@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    </h:head>
+    <h:body> 
+        <h:outputStylesheet library="css" name="login.css" />
+        <h:outputScript library="js" name="login.js" />
+
+        <div class="login-reg-panel">
+            <div class="login-info-box">
+                <h2>Have an account?</h2>
+                <label id="label-register" for="log-reg-show">Login</label>
+                <input type="radio" name="active-log-panel" id="log-reg-show"  checked="checked"/>
+            </div>
+
+            <div class="register-info-box">
+                <h2>Don't have an account?</h2>
+                <label id="label-login" for="log-login-show">Register</label>
+                <input type="radio" name="active-log-panel" id="log-login-show"/>
+            </div>
+            <div class="white-panel">
+                <div class="login-show">
+                    <h2>LOGIN</h2>
+                    <h:form>
+                        <p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true">
+                            <p:autoUpdate/>
+                        </p:growl>
+                        <div id="lecturerloginform">
+                            <span class="ui-float-label">
+                                <p:inputText id="float-input" value="#{lecturerModel.lect.email}"/>
+                                <p:outputLabel for="@previous" value="Email"/>
+                            </span>
+                            <span class="ui-float-label">
+                                <p:password id="togglepassword1" class="password-input" value="#{lecturerModel.lect.password}" toggleMask="true" redisplay="true"/>
+                                <p:outputLabel for="@previous" value="Password"/>
+                            </span>
+                            <p:commandButton  action="#{lecturerModel.login()}" value="Login" />
+                            <a href="">Forgot password?</a>
+                        </div>
+                    </h:form>
+                </div>
+                <div class="register-show">
+                    <h2>REGISTER</h2>
+                    <h:form id="lecturersignupform">
+
+                        <span class="ui-float-label">
+                            <p:inputText id="Fullaname" value="#{lecturerModel.lect.fullname}"/>
+                            <p:outputLabel for="@previous" value="FullName"/>
+                        </span>
+                        <span class="ui-float-label">
+                            <p:inputText id="email" value="#{lecturerModel.lect.email}"/>
+                            <p:outputLabel for="@previous" value="Email"/>
+                        </span>
+                        <span class="ui-float-label">
+                            <p:inputText id="phonenumber" value="#{lecturerModel.lect.phone}"/>
+                            <p:outputLabel for="@previous" value="Phone Number"/>
+                        </span>
+                        <span class="ui-float-label">
+                            <p:password id="togglepassword2" class="password-input" match="togglepassword3" value="#{lecturerModel.lect.password}" toggleMask="true" redisplay="true"/>
+                            <p:outputLabel for="@previous" value="Password"/>
+                        </span>
+                        <span class="ui-float-label">
+                            <p:password id="togglepassword3" class="password-input" style="width: 100%" value="#{lecturerModel.confirm_password}" toggleMask="true" redisplay="true"/>
+                            <p:outputLabel for="@previous" value="Confirm-Password"/>
+                        </span>
+                        <p:commandButton  action="#{lecturerModel.signUp()}"  value="Register" />
+
+                    </h:form>
+                </div>
+            </div>
+        </div>
+    </h:body>
+</html>
+

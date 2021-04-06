@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:outputStylesheet library="css" name="style.css" />
+        <h:outputStylesheet library="css" name="dashboard.css" />
+        <p:growl id="growl" life="2000"/>
+        <h:form class="topnavbar">
+            <div>
+                <div class ="left-area">
+                    <label for="check">
+                    </label>
+                    <h3>OE <span>System</span></h3>
+
+                </div>
+            </div>
+            <div>
+                <div class="right-nav-home">
+                    <div class="btn-link">
+                        <i class="pi pi-arrow-circle-right"></i>
+                        <p:commandLink id="ajax1" update="growl" action="#{lecturerModel.redirectPage('login')}" style="margin-right:20px;">
+                            <h:outputText value="Lecturer"/>
+                        </p:commandLink>
+                    </div>
+                    <div class="btn-link">
+                        <i class="pi pi-arrow-circle-right"></i>
+                        <p:commandLink id="ajax" update="growl" action="#{lecturerModel.redirectPage('SignUpStudent')}" style="margin-right:20px;">
+                            <h:outputText value="Student"/>
+                        </p:commandLink>
+                    </div>
+
+                    <div class="btn-link">
+                        <i class="pi pi-arrow-circle-right"></i>
+                        <p:commandLink  value="Contact Us" action="#{lecturerModel.redirectPage('contactUs')}" /> 
+                    </div>
+                    <div class="btn-link">
+                        <i class="pi pi-arrow-circle-right"></i>
+                        <p:commandLink  value="About Us" /> 
+                    </div>
+                </div>
+            </div>
+        </h:form>
+        <div>
+            <h:form>
+                <div>
+                    <style type="text/css">
+                        p {
+                            line-height: 1.5;
+                            margin: 0;
+                        }
+                    </style>
+
+
+                    <p:card style="width: 100%; margin-bottom: 2em">
+                        <f:facet name="title">
+                            Welcome
+                        </f:facet>
+
+                        <p>Today Online Examination System has become a fast growing examination method because of its speed and accuracy.
+
+                            It is also needed less manpower to execute the examination. Almost all organizations now-a-days, are conducting their objective exams by online examination system, it saves students time in examinations.
+
+                            Organizations can also easily check the performance of the student that they give in an examination.
+
+                            As a result of this, organizations are releasing results in less time. It also helps the environment by saving paper. </p>
+
+                    </p:card>
+                </div>
+
+            </h:form>
+        </div>
+        <div>
+            <div class="card slideshow">
+                <p:imageSwitch effect="fade" id="fadeEffect">
+                    <ui:repeat value="#{imagesView.images}" var="image" id="fadeEffectImages">
+                        <p:card style="width: 100%">
+                            <f:facet name="header">
+                                <p:graphicImage name="#{image}" id="image2" library="images" height="100%"/>
+                            </f:facet>
+                            <f:facet name="title">
+                                Advanced Card
+                            </f:facet>
+                            <f:facet name="subtitle">
+                                <!--Card subtitle-->
+                            </f:facet>
+
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt
+                                quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!</p>
+
+                        </p:card>
+                    </ui:repeat>
+                </p:imageSwitch>
+            </div>
+        </div>
+        <ui:include src="/components/foot.xhtml" />
+    </h:body>
+</html>
+

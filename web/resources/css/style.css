@@ -1,0 +1,164 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Mar 24, 2021, 4:04:52 PM
+    Author     : Nishimwe Elysee
+*/
+
+
+.topnavbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    /*border: 1px solid blue;*/
+    padding: 40px 20px;
+    background-color: #f1f1f1;
+}
+
+.circle {
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+
+.btn {
+    background-color: #1DC4E7 !important;
+    color: white !important;
+    border-color: #1DC4E7 !important;
+}
+.list-menu{
+    list-style: none;
+    margin-top: 3px;
+}
+.list-menu:hover{
+    color: #1DC4E7 !important;
+    cursor: pointer;
+}
+.search-inp{
+    width: 500px;
+}
+@media(max-width:830px){
+    .search-inp{
+        width: auto;
+    }
+}
+@media(max-width:520px){
+    .username{
+        display: none;
+    }
+}
+
+/*Home Page */
+
+.right-nav-home {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 500px;
+}
+.pi {
+    margin: 4px;
+}
+.btn-link:hover ,.btn-link >a:hover{
+    color: #9418F4 !important;
+}
+.btn-link {
+    /*background-color: #08ED48;*/
+    color: #08ED48 !important;
+    /*border-color: #08ED48 !important;*/
+    padding: 4px;
+    border-radius: 5px;
+}
+.btn-link >a {
+    color: #08ED48 !important;
+}
+.ui-commandlink{
+    color: white !important;
+}
+.slideshow {
+    height: 100%;
+}
+
+/*Footer*/
+.footer-container{
+
+    background-color:#11314a;  
+
+}
+.footer{
+    width:100%;
+    height: 40vh;
+    background-color:#11314a; 
+    color: #fff;
+    display: flex;
+    justify-content: space-around;
+
+}
+.footer-heading{
+    display:flex;
+    flex-direction: column;
+} 
+
+.Social-links{
+    display:flex;
+    flex-direction: column;
+
+}
+.Social-links ul{
+    display: flex;
+    flex-direction: column;
+}
+.social_items{
+    list-style: none;
+}
+.social_items a{
+
+    /*margin: 2rem;*/
+    color:white;
+    font-size: 20px;
+}
+
+
+.outer-footer{
+    padding: 15px;
+    text-align: center;
+    color: white;
+
+}
+.container {
+    display: flex;
+    flex-direction: row;
+}
+.container>.content {
+    padding: 20px;
+    width: 100%;
+}
+
+.card-question {
+    background-color: #f1f1f1 !important;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px;
+}
+
+#form-exam-list{
+    width: 100% !important;
+}
+
+
+/*Prepare Exam*/
+
+.prepareExam {
+    border: 1px #f1f1f1 solid;
+    padding: 20px;
+}
+.question {
+    padding: 10px;
+    border: 2px solid #f1f1f1;
+    border-radius: 5px;
+    margin: 5px;
+}
